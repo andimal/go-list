@@ -1,0 +1,2 @@
+module ListedRestaurantsHelper
+end

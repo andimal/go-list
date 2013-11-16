@@ -1,4 +1,6 @@
 GoList::Application.routes.draw do
+  resources :listed_restaurants
+
   devise_for :users
   resources :restaurants
   root to: 'restaurants#index'
