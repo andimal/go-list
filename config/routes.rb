@@ -1,9 +1,10 @@
 GoList::Application.routes.draw do
+  get "go_lists/show"
   resources :listed_restaurants
 
   devise_for :users
   resources :restaurants
-  root to: 'restaurants#index'
+  root to: 'go_lists#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
