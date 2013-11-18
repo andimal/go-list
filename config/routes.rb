@@ -6,6 +6,8 @@ GoList::Application.routes.draw do
   resources :restaurants
   root to: 'go_lists#show'
 
+  get 'search_yelp' => 'go_lists#search_yelp'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

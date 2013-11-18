@@ -1,3 +1,13 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+searchYelp = (args) ->
+  $.ajax
+    url   : window.location.href + 'search_yelp'
+    data  : args
+    cache : true
+    success: (data) ->
+      console.log $.parseJSON(data)
+
+params =
+  'term'      : 'phillys+best'
+  'location'  : 'evanston'
+
+searchYelp(params)

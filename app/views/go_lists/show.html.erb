@@ -4,6 +4,7 @@
 	<% @user.listed_restaurants.each do |restaurant| %>
 		<p><%= restaurant.restaurant.name %></p>
 	<% end %>
+  
 <% else %>
 	<p>Not logged in.</p>
 <% end %>
