@@ -4,10 +4,26 @@ searchYelp = (args) ->
     data  : args
     cache : true
     success: (data) ->
-      console.log $.parseJSON(data)
+      $('.results').html('')
+      data = $.parseJSON(data)
+      console.log data
+      $(data.businesses).each ->
+        $('.results').append('<p data-yelp-id="' + this.id + '">' + this.name + ' - ' + this.location.city + '</p>')
 
-params =
-  'term'      : 'phillys+best'
-  'location'  : 'evanston'
+timer = null
 
-searchYelp(params)
+setSearchTimer = ->
+  timer = setTimeout( ->
+    query = $('.search-yelp').val().replace(' ', '+')
+
+    params =
+      'term'      : query
+      'location'  : 'evanston'
+
+    searchYelp(params)
+  , 1000)
+
+$(document).ready ->
+  $('.search-yelp').keypress ->
+    clearTimeout(timer)
+    setSearchTimer()

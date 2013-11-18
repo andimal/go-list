@@ -1,10 +1,12 @@
 <h1>GoList</h1>
+<input class="search-yelp" />
+<div class="results"></div>
 
 <% if user_signed_in? %>
 	<% @user.listed_restaurants.each do |restaurant| %>
 		<p><%= restaurant.restaurant.name %></p>
 	<% end %>
-  
+
 <% else %>
 	<p>Not logged in.</p>
 <% end %>
