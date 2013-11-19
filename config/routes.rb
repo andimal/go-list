@@ -7,6 +7,7 @@ GoList::Application.routes.draw do
   root to: 'go_lists#show'
 
   get 'search_yelp' => 'go_lists#search_yelp'
+  get 'add-to-list' => 'go_lists#add'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

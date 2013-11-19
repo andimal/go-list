@@ -3,10 +3,12 @@
 <div class="results"></div>
 
 <% if user_signed_in? %>
-	<% @user.listed_restaurants.each do |restaurant| %>
-		<p><%= restaurant.restaurant.name %></p>
-	<% end %>
+  <section class="go-list">
+  <% @user.listed_restaurants.each do |restaurant| %>
+    <p><%= restaurant.restaurant.name %></p>
+  <% end %>
+  </section>
 
 <% else %>
-	<p>Not logged in.</p>
+  <p>Not logged in.</p>
 <% end %>

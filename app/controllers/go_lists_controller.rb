@@ -22,4 +22,20 @@ class GoListsController < ApplicationController
       render :file => 'public/404.html', :status => :not_found, :layout => false
     end
   end
+
+  def add
+    if params[:restaurantID]
+      user = User.find( current_user.id )
+      
+      restaurant = Restaurant.find_by data: params[:restaurantID]
+      if !restaurant
+        restaurant = Restaurant.create( name: params[:name], location: "test loc", data: params[:restaurantID] )
+      end
+
+      user.listed_restaurants.create(restaurant: restaurant)
+      render text: "Success"
+    else
+      render :file => 'public/404.html', :status => :not_found, :layout => false
+    end
+  end
 end

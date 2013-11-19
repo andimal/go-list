@@ -1,14 +1,40 @@
+root = window.location.href
+
+searchResultClickHandler = () ->
+  $('.results .search-result').click ->
+    $(this)
+      .clone()
+      .appendTo('.go-list')
+
+    info = 
+      restaurantID : $(this).attr('data-yelp-id')
+      name         : $(this).attr('data-name')
+
+    $.ajax
+      url   : root + 'add-to-list'
+      data  : info
+      cache : true
+      success: (data) ->
+        console.log data
+
 searchYelp = (args) ->
   $.ajax
-    url   : window.location.href + 'search_yelp'
+    url   : root + 'search_yelp'
     data  : args
     cache : true
     success: (data) ->
+      counter = 0
       $('.results').html('')
       data = $.parseJSON(data)
       console.log data
       $(data.businesses).each ->
-        $('.results').append('<p data-yelp-id="' + this.id + '">' + this.name + ' - ' + this.location.city + '</p>')
+        if counter < 5
+          $('.results').append('<p class="search-result" data-yelp-id="' + this.id + '" data-name="' + this.name + '">' + this.name + ' - ' + this.location.city + '</p>')
+          counter++
+        else
+          return false
+
+      searchResultClickHandler()
 
 timer = null
 
